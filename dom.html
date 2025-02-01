@@ -20,6 +20,16 @@
      //이름을 입력받고(변수 사용은 자유)
      // 콘솔로 ${이름}님 환영합니다
      //라고 나올 수 있게 해보세요
+     let btn = $('button.btn2');
+     btn.click(function(){
+        let num = prompt ('숫자 입력');
+        if(num%2==0){
+            alert('짝수입니다.');
+        }
+        else{
+            alert('홀수입니다.');
+        }
+     });
 
     </script>
 </body>
