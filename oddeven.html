@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oddeven.html</title>
+    <script src="./jquery.js"></script>
+    <style>
+        button.try{
+            display: none;
+        }
+        button.try.show{
+            display: inline;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>홀수 짝수 맞추기 게임</h1>
+    <button>홀수</button>
+    <button>짝수</button>
+    <h3>메시지</h3>
+    <button class="try">재도전</button>
+    <script>
+         let num = parseInt (Math.random()*10)+1;
+        let oddeven = '';
+        const getNum = function(randomNum){
+          
+        if(randomNum%2==0){
+             oddeven = "짝수";
+        }
+        else{
+            oddeven = "홀수";
+        }
+        }
+        getNum(num);
+
+        $('button').click(function(){
+            if(!$(this).hasClass('try')){
+                $('button').attr('disabled',true);
+            }
+            let now = $(this).text();
+            $('h3').removeClass('remove');
+            if(oddeven===now){
+                $('h3').text('정답입니다');
+                $('button').attr('disabled',true);
+                $('button.try').removeClass('show');
+            }
+            else{
+                $('h3').text('오답입니다');
+                $('button.try').addClass('show');
+                $('button').attr('disabled',false);
+                
+            }
+            $('button.try').click(function(){
+                $('button').attr('disabled',false);
+                $(this).removeClass('show');
+                num = parseInt (Math.random()*10)+1;
+                getNum(num);
+                $('h3').addClass('remove');
+            })
+        })
+        //1. 버튼 두개 홀짝 선택
+    //2. 랜덤 숫자 생성
+    //3. 랜덤이 홀수인지 짝수인지
+    //4. 비교
+    //5. 결과 출력
+    //6. 재도전 버튼 발생
+    
+    </script>
+</body>
+</html>
