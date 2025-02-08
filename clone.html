@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+</head>
+<body>
+    <div class="wrap">
+    <h2>이 태그를 복제해봐요!</h2>
+    <h3>이 태그를 복제해봐요!</h3>
+</div>
+    <script>
+        
+       const h2= $('h2');
+      const wrap = $('.wrap');
+       const h3=$('h3');
+      let obj = [
+        {
+            name:'name',
+            id: 'id'
+        },
+        {
+            name:'name',
+            id: 'id'
+        },
+        {
+            name:'name',
+            id: 'id'
+        },
+      ];
+
+      obj.forEach(function(e){
+        let h2Clone = h2.clone();
+        let h3Clone = h3.clone();
+        h2Clone.text(e.id);
+        h3Clone.text(e.name);
+        wrap.append(h2Clone);
+        wrap.append(h3Clone);
+        
+        
+
+      })
+      console.log($('h2'));
+h2.remove();
+h3.remove();
+     
+      
+      
+      
+
+    </script>
+</body>
+</html>
