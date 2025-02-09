@@ -1,0 +1,103 @@
+1 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=div.viewport, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.view{
+            width:50%;
+            margin: 0 auto;
+            position:relative;
+            height: 500px;
+        }
+        div.slide{
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 500px;
+            opacity:0;
+            transition: opacity 0.5s;
+        }
+        div.slide.active{
+            opacity: 1;
+        }
+        
+    div.slide.s1{
+        background-color: #31babe
+    }
+    div.slide.s2{
+         background-color: #70203a;
+    }
+    div.slide.s3{
+background-color: #db2626;
+    }
+    div.slide.s4{
+background-color: #1fc291;
+    }
+    div.slide.s5{
+background-color: #311481;
+    }
+    div.btns{
+        width:100%;
+        position: absolute;
+        
+        margin:auto;
+        top:0; bottom:0;
+        height: 40px;
+        display:flex;
+        justify-content: space-between;
+    }
+    button{
+        display:block;
+        width: 40px;
+        height: 40px;
+        font-size: 30px;
+        border:0;
+        background-color:transparent;
+        cursor: pointer;
+    }
+    </style>
+    <script src="./jquery.js"></script>
+</head>
+<body>
+    <div class="view">
+        <div class="slide s1 active">슬라이드1</div>
+        <div class="slide s2">슬라이드2</div>
+        <div class="slide s3">슬라이드3</div>
+        <div class="slide s4">슬라이드4</div>
+        <div class="slide s5">슬라이드5</div>
+        <div class="btns">
+            <button class="prev">◀</button>
+            <button class="next">▶</button>
+        </div>
+    </div>
+    <script>
+        const btns = $('button');
+        const slides = $('.slide');
+        let idx=0;
+        console.log(slides.length);
+        btns.click(function(){
+            let left=$(this).hasClass('prev');
+            
+            if(left){
+                idx--;
+                idx = idx % slides.length;
+                console.log(idx);
+                slides.removeClass('active');
+               slides.eq(idx).addClass('active');
+                console.log('왼쪽 움직입');
+            }
+            else{
+                idx++;
+               idx=idx % slides.length;
+                console.log(idx);
+                slides.removeClass('active');
+                slides.eq(idx).addClass('active');
+                console.log('오른쪽 움직입');
+            }
+        })
+    </script>
+</body>
+</html>
