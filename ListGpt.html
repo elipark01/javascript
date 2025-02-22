@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .todo-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        .todo-item.completed {
+            text-decoration: line-through;
+            background-color: #d3ffd3;
+        }
+        button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #ff6666;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff3333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>To-Do List</h1>
+    <input type="text" id="todo-input" placeholder="Add a new task...">
+    <button onclick="addTask()">Add Task</button>
+
+    <ul id="todo-list"></ul>
+
+    <script>
+        function addTask() {
+            const input = document.getElementById('todo-input');
+            const taskText = input.value.trim();
+            
+            if (taskText === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            const todoList = document.getElementById('todo-list');
+
+            // 새로운 todo 항목 생성
+            const li = document.createElement('li');
+            li.classList.add('todo-item');
+            li.textContent = taskText;
+
+            // 완료 버튼 생성
+            const completeButton = document.createElement('button');
+            completeButton.textContent = "Complete";
+            completeButton.onclick = function() {
+                li.classList.toggle('completed');
+            };
+
+            // 삭제 버튼 생성
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function() {
+                todoList.removeChild(li);
+            };
+
+            // li에 버튼 추가
+            li.appendChild(completeButton);
+            li.appendChild(deleteButton);
+
+            // 리스트에 추가
+            todoList.appendChild(li);
+
+            // 입력창 비우기
+            input.value = "";
+        }
+    </script>
+
+</body>
+</html>
